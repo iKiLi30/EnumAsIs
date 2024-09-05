@@ -8,23 +8,33 @@ namespace EnumAsIs
             south = 2,
             east = 3,
             west = 4,
-            northwest = 5,
-            northeast = 6,
-            northwestwest = 7
-        }
+     }
+    struct route
+    {
+        public orientation direction;
+        public double distance;
+    }
+
     class Program
     {
-        
+
         static void Main(string[] args)
         {
-            byte directionByte;
-            string? directionString;
-            orientation myDirection = orientation.north;
-            Console.WriteLine($"myDirection = {myDirection}");
-            directionByte = (byte)myDirection;
-            directionString = Convert.ToString(myDirection);
-            Console.WriteLine($"byte equivalent = {directionByte}");
-            Console.WriteLine($"string equivalent = {directionString}");
+            route myRoute;
+            int myDirection = -1;
+            double myDistance = 0;
+            Console.WriteLine(" 1. North\n 2.South\n 3.East\n 4.West ");
+            do
+            {
+                Console.WriteLine("Select a direction:");
+                myDirection = Convert.ToInt32(Console.ReadLine());
+            }
+            while ((myDirection < 1) || (myDirection > 4));
+            Console.WriteLine("Input a distance: ");
+            myDistance = Convert.ToDouble(Console.ReadLine());
+            myRoute.direction = (orientation)myDirection;
+            myRoute.distance = myDistance;
+            Console.WriteLine($"my route {myDirection}" + $"my distance of {myRoute.distance}");
             Console.ReadKey();
         }
     }
